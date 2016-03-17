@@ -4,7 +4,7 @@ class Blackjack
 	{
 		try
 		{
-			//Card c = new Card();
+			Deck d = new Deck();
 		}
 		catch (Exception e)
 		{
