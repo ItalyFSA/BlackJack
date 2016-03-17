@@ -7,6 +7,7 @@ class Card
 		this.value = v;
 		this.suit = s;
 	}
+	
 	public String toString() {
 		return this.value + " of " + this.suit;
 	}
