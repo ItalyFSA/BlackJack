@@ -1,9 +1,11 @@
+import java.util.*;
+
 class Deck
 {
-	public Card[] deck;
+	public LinkedList<Card> deck;
 
 	public Deck() {
-		this.deck = new Card[52];
+		this.deck = new LinkedList<Card>();
 		for (int i = 1; i < 14; i++) {
 			// must account for face cards only having value of 10
 			int curValue = i;
@@ -12,21 +14,24 @@ class Deck
 			if (i == 1)
 				curValue = 11;
 			// must account for face cards only having value of 10
-			this.deck[i - 1] = new Card(curValue, Suit.Spades);
-			this.deck[i + 12] = new Card(curValue, Suit.Diamonds);
-			this.deck[i + 25] = new Card(curValue, Suit.Clubs);
-			this.deck[i + 38] = new Card(curValue, Suit.Hearts);
+			this.deck.addFirst(new Card(curValue, Suit.Spades));
+			this.deck.addFirst(new Card(curValue, Suit.Diamonds));
+			this.deck.addFirst(new Card(curValue, Suit.Clubs));
+			this.deck.addFirst(new Card(curValue, Suit.Hearts));
 		}
 	}
 
 	public void printDeck()
 	{
-
+		// iterate through deck to see all the cards
+		for (int i = 0; i < this.deck.size(); ++i) {
+			System.out.println(this.deck.get(i).toString());
+		}
 	}
 
 	public Card dealCard()
 	{
-		return null;
+		return this.deck.getFirst();
 	}
 
 	public void shuffle()
@@ -36,7 +41,7 @@ class Deck
 
 	public void reset()
 	{
-		this.deck = new Card[52];
+		this.deck = new LinkedList<Card>();
 		for (int i = 1; i < 14; i++) {
 			// must account for face cards only having value of 10
 			int curValue = i;
@@ -45,10 +50,10 @@ class Deck
 			if (i == 1)
 				curValue = 11;
 			// must account for face cards only having value of 10
-			this.deck[i - 1] = new Card(curValue, Suit.Spades);
-			this.deck[i + 12] = new Card(curValue, Suit.Diamonds);
-			this.deck[i + 25] = new Card(curValue, Suit.Clubs);
-			this.deck[i + 38] = new Card(curValue, Suit.Hearts);
+			this.deck.addFirst(new Card(curValue, Suit.Spades));
+			this.deck.addFirst(new Card(curValue, Suit.Diamonds));
+			this.deck.addFirst(new Card(curValue, Suit.Clubs));
+			this.deck.addFirst(new Card(curValue, Suit.Hearts));
 		}
 	}
 }
