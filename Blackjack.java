@@ -4,12 +4,26 @@ class Blackjack
 	{
 		try
 		{
-			Deck d = new Deck();
+			runTests();
 		}
 		catch (Exception e)
 		{
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
-}
 
+	public static void runTests()
+	{
+		DeckTests tests = new DeckTests();
+
+		// shuffle the deck
+		tests.testShuffle();
+
+		// deal a card
+		tests.testDealCard();
+
+		// reset the deck
+		tests.testReset();
+	}
+
+}

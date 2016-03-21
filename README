@@ -6,4 +6,4 @@ Alfonso Juarez
 Katie Lamkin
 
 compile: javac Blackjack.java
-run java Blackjack
+run: java Blackjack
