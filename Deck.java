@@ -4,9 +4,11 @@ class Deck
 {
 	public LinkedList<Card> deck;
 
-	public Deck() {
+	public Deck() 
+	{
 		this.deck = new LinkedList<Card>();
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++)
+		{
 			// must account for face cards only having value of 10
 			int curValue = i;
 			if (i >= 10)
@@ -24,7 +26,8 @@ class Deck
 	public void printDeck()
 	{
 		// iterate through deck to see all the cards
-		for (int i = 0; i < this.deck.size(); ++i) {
+		for (int i = 0; i < this.deck.size(); ++i)
+		{
 			System.out.println(this.deck.get(i).toString());
 		}
 	}
@@ -36,13 +39,22 @@ class Deck
 
 	public void shuffle()
 	{
-
+		reset();
+		for (int i = 0; i < this.deck.size(); ++i)
+		{
+			// rearranging all the cards
+			int j = (int) Math.floor(Math.random() * (i + 1));
+			Card temp = this.deck.get(i);
+			this.deck.set(i, this.deck.get(j));
+			this.deck.set(j, temp);
+		}
 	}
 
 	public void reset()
 	{
 		this.deck = new LinkedList<Card>();
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++)
+		{
 			// must account for face cards only having value of 10
 			int curValue = i;
 			if (i >= 10)
