@@ -12,29 +12,33 @@ class DeckTests
 	{
 		// deal the card and test the size of the deck
 		Card curCard = curDeck.dealCard();
-		if (curCard != null && curDeck.deck.size() == 51)
+		System.out.println("\n\nDealt Card: " + curCard.toString());
+
+		if (curCard != null)
 		{
-			System.out.println("No error dealing card.");
+			System.out.println("No error dealing card.\n");
 		}
 		else
 		{
-			System.out.println("Error: dealing card failed!");
+			System.out.println("Error: dealing card failed!\n");
 		}
 	}
 
 	public void testShuffle()
 	{
 		// test the shuffle
+		System.out.println("\n\nShuffling Deck: \n");
 		curDeck.shuffle();
 		curDeck.printDeck();
-		System.out.println("No error shuffling.");
+		System.out.println("No error shuffling.\n");
 	}
 
 	public void testReset()
 	{
 		// test the reset
+		System.out.println("\n\nReset Deck: \n");
 		curDeck.reset();
 		curDeck.printDeck();
-		System.out.println("No error resetting.");
+		System.out.println("No error resetting.\n");
 	}
 }
