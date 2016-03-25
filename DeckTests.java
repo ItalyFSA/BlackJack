@@ -12,7 +12,7 @@ class DeckTests
 	{
 		// deal the card and test the size of the deck
 		Card curCard = curDeck.dealCard();
-		System.out.println("\n\nDealt Card: " + curCard.toString());
+		System.out.println("\nDealt Card: " + curCard.toString());
 
 		if (curCard != null)
 		{
@@ -27,7 +27,7 @@ class DeckTests
 	public void testShuffle()
 	{
 		// test the shuffle
-		System.out.println("\n\nShuffling Deck: \n");
+		System.out.println("\nShuffling Deck: \n");
 		curDeck.shuffle();
 		curDeck.printDeck();
 		System.out.println("No error shuffling.\n");
@@ -36,7 +36,7 @@ class DeckTests
 	public void testReset()
 	{
 		// test the reset
-		System.out.println("\n\nReset Deck: \n");
+		System.out.println("\nReset Deck: \n");
 		curDeck.reset();
 		curDeck.printDeck();
 		System.out.println("No error resetting.\n");
