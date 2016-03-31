@@ -7,16 +7,42 @@ class Blackjack
 		try
 		{
 			// tests
-			runDeckTests();
-			runDealerTests();
-			runPlayerTests();
+			// runDeckTests();
+			// runDealerTests();
+			// runPlayerTests();
 
 			Player player = new Player();
 			Dealer dealer = new Dealer();
 
 			Deck deck = new Deck();
-
-			runGame(player, dealer, deck);
+		
+			boolean running = true;
+			while (running)
+			{
+				try	
+				{
+					System.out.println("New hand? yes or no (please type as written)");
+					String input = (new BufferedReader(new InputStreamReader(System.in))).readLine();
+					if (input == "yes")
+					{
+						runGame(player, dealer, deck);
+					}
+					else if (input == "no")
+					{
+						running = false;
+						System.out.println("Bye.");
+					}
+					else
+					{
+						System.out.println("Didn't understand input please try again.");
+					}
+				}
+				catch (Exception e)
+				{
+					System.out.println("Error with taking input. Abort.");
+					running = false;
+				}
+			}
 		}
 		catch (Exception e)
 		{
@@ -49,13 +75,13 @@ class Blackjack
 					String input = (new BufferedReader(new InputStreamReader(System.in))).readLine();
 					if (input == "hit")
 					{
-						boolean end = hit(player, deck);
+						boolean end = hit(player, dealer, deck);
 						if (end)
 							run = false;
 					}
 					else if (input == "stand")
 					{
-						stand();
+						stand(player, dealer, deck);
 						run = false;
 					}
 					else
@@ -75,32 +101,100 @@ class Blackjack
 
 	public static void newHand(Player player, Dealer dealer, Deck deck)
 	{
-		
+		// clear the hands
+		player.clearHand();
+		dealer.clearHand();
+
+		// reset the deck
+		deck.reset();
+
+		// add cards
+		player.addCard(deck.dealCard());
+		dealer.addCard(deck.dealCard());
+		player.addCard(deck.dealCard());
+		dealer.addCard(deck.dealCard());
+
+		// show the hands
+		player.showHand();
+		dealer.showHand();
 	}
 
-	public void dealNewHand()
+	public static boolean hit(Player player, Dealer dealer, Deck deck)
 	{
-		
+		player.addCard(deck.dealCard());
+		player.showHand();
+
+		if (player.busted())
+		{
+			whoWon(player, dealer);
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
-	public static boolean hit(Player player, Deck deck)
+	public static void stand(Player player, Dealer dealer, Deck deck)
 	{
-		return false;
+		System.out.println("You stand");
+		playDealerHand(player, dealer, deck);
 	}
 
-	public static void stand()
+	public static void playDealerHand(Player player, Dealer dealer, Deck deck)
 	{
-		
+		System.out.println("Dealer playing hand... ");
+		// if score is 17 or greater, stand
+		boolean dealerHandRunning = true;
+		while (dealerHandRunning)
+		{
+			if (dealer.score < 17)
+			{
+				System.out.println("Dealer adding card to hand... ");
+				dealer.addCard(deck.dealCard());
+			}
+			else
+			{
+				dealerHandRunning = false;
+				System.out.println("Dealer stands... ");
+			}
+		}
+		whoWon(player, dealer);
 	}
 
-	public void playDealerHand(Dealer dealer, Deck deck)
+	public static void whoWon(Player player, Dealer dealer)
 	{
-		
-	}
+		System.out.println("Who won?????");
+		// show cards to user
+		player.showHand();
+		dealer.displayHand();
 
-	public void static whoWon(Player player, Dealer dealer)
-	{
-		
+		if (player.busted())
+		{
+			System.out.println("Sorry!! You lose. :(");
+		}
+		else
+		{
+			if (dealer.busted())
+			{
+				System.out.println("You win!! :)");
+			}
+			else
+			{
+				if (player.score < dealer.score)
+				{
+					System.out.println("Sorry!! You lose. :(");
+				}
+				else if (player.score > dealer.score)
+				{
+					System.out.println("You win!! :)");
+				}
+				else
+				{
+					System.out.println("Wow. Its a tie!! :/");
+				}
+			}
+		}
 	}
 
 	public static void runDeckTests()
