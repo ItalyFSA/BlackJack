@@ -34,7 +34,7 @@ class Deck
 
 	public Card dealCard()
 	{
-		return this.deck.getFirst();
+		return this.deck.removeFirst();
 	}
 
 	public void shuffle()
