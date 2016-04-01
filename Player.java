@@ -15,8 +15,6 @@ class Player
 
 	public void addCard(Card card)
 	{
-		System.out.println(card.toString());
-
 		// adding card to dealer hand
 		this.hand.add(card);
 		if (card.value == 1)

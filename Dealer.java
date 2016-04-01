@@ -17,11 +17,6 @@ class Dealer
 
 	public void addCard(Card card)
 	{
-		if (this.firstCardDealt)
-				System.out.println("Card");
-		else
-			System.out.println(card.toString());
-
 		// see if its first card
 		if (this.hand.size() == 0)
 			this.firstCardDealt = true;

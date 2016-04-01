@@ -23,11 +23,11 @@ class Blackjack
 				{
 					System.out.println("New hand? yes or no (please type as written)");
 					String input = (new BufferedReader(new InputStreamReader(System.in))).readLine();
-					if (input == "yes")
+					if (input.equals("yes"))
 					{
 						runGame(player, dealer, deck);
 					}
-					else if (input == "no")
+					else if (input.equals("no"))
 					{
 						running = false;
 						System.out.println("Bye.");
@@ -73,13 +73,13 @@ class Blackjack
 				{
 					System.out.println("hit or stand? (please type as written)");
 					String input = (new BufferedReader(new InputStreamReader(System.in))).readLine();
-					if (input == "hit")
+					if (input.equals("hit"))
 					{
 						boolean end = hit(player, dealer, deck);
 						if (end)
 							run = false;
 					}
-					else if (input == "stand")
+					else if (input.equals("stand"))
 					{
 						stand(player, dealer, deck);
 						run = false;
@@ -107,6 +107,7 @@ class Blackjack
 
 		// reset the deck
 		deck.reset();
+		deck.shuffle();
 
 		// add cards
 		player.addCard(deck.dealCard());
@@ -127,11 +128,11 @@ class Blackjack
 		if (player.busted())
 		{
 			whoWon(player, dealer);
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -171,13 +172,13 @@ class Blackjack
 
 		if (player.busted())
 		{
-			System.out.println("Sorry!! You lose. :(");
+			System.out.println("Sorry you busted!! You lose. :(");
 		}
 		else
 		{
 			if (dealer.busted())
 			{
-				System.out.println("You win!! :)");
+				System.out.println("Dealer busted!! You win!! :)");
 			}
 			else
 			{
