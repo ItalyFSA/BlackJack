@@ -99,6 +99,43 @@ class Blackjack
 		}
 	}
 
+	public static void runBotGame(Player player, Dealer dealer, Deck deck, String[] moves)
+	{
+		newHand(player, dealer, deck);
+
+		if (player.blackjack())
+		{
+			// player wins
+			whoWon(player, dealer);
+		}
+		else if (dealer.blackjack())
+		{
+			// dealer wins
+			whoWon(player, dealer);
+		}
+		else
+		{
+			for (int i = 0; i < moves.length; ++i)
+			{
+				if (moves[i].equals("hit"))
+				{
+					boolean end = hit(player, dealer, deck);
+					if (end)
+						break;
+				}
+				else if (moves[i].equals("stand"))
+				{
+					stand(player, dealer, deck);
+					break;
+				}
+				else
+				{
+					System.out.println("Didn't understand input please try again.");
+				}
+			}
+		}
+	}
+
 	public static void newHand(Player player, Dealer dealer, Deck deck)
 	{
 		// clear the hands
