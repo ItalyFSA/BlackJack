@@ -119,12 +119,14 @@ class Blackjack
 			{
 				if (moves[i].equals("hit"))
 				{
+					System.out.println("hit");
 					boolean end = hit(player, dealer, deck);
 					if (end)
 						break;
 				}
 				else if (moves[i].equals("stand"))
 				{
+					System.out.println("stand");
 					stand(player, dealer, deck);
 					break;
 				}

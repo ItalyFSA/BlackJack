@@ -5,5 +5,9 @@ Jason Malabed
 Alfonso Juarez
 Katie Lamkin
 
+Main:
 compile: javac Blackjack.java
 run: java Blackjack
+
+
+** To run system tests or bot, remove from sprint folders and put in main folder then compile and run those specified files.
